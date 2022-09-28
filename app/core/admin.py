@@ -1,8 +1,7 @@
 from django.contrib import admin  # noqa
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import User
-
+from . import models
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -28,4 +27,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 # Register your models here.
-admin.site.register(User, UserAdmin)
+admin.site.register(models.User, UserAdmin)
