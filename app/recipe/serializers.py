@@ -13,6 +13,11 @@ class RecipeSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'time_minutes', 'price', 'link']
         read_only_fields = ['id']
 
+    def update(self, instance, validated_data):
+        print("instance", instance)
+        print("validated_data", validated_data)
+        return super().update(instance, validated_data)
+
 
 class RecipeDetailSerializer(RecipeSerializer):
     """Serializer for recipe details view."""
