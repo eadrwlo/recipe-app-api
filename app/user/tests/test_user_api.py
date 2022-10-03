@@ -27,7 +27,6 @@ class PublicUserApiTests(TestCase):
         self.client = APIClient()
 
     def test_create_user_success(self):
-        print("test_create_user_success")
         """Test creating a user is successful."""
         payload = {
             'email': 'test@example.com',
