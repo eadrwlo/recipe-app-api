@@ -70,23 +70,23 @@ class PrivateIngredientAPITests(TestCase):
         self.assertEqual(res.data[0]['name'], ingredient.name)
         self.assertEqual(res.data[0]['id'], ingredient.id)
 
-    # def test_update_tag(self):
-    #     tag = Tag.objects.create(user=self.user, name='After Dinner')
-    #
-    #     payload = {'name': 'Dessert'}
-    #     url = detail_url(tag.id)
-    #     res = self.client.patch(url, payload)
-    #
-    #     self.assertEqual(res.status_code, status.HTTP_200_OK)
-    #     tag.refresh_from_db()
-    #     self.assertEqual(tag.name, payload['name'])
-    #
-    # def test_delete_tag(self):
-    #     tag = Tag.objects.create(user=self.user, name='After Dinner')
-    #
-    #     url = detail_url(tag.id)
-    #     res = self.client.delete(url)
-    #
-    #     self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
-    #     tags = Tag.objects.filter(user=self.user)
-    #     self.assertFalse(tags.exists())
+    def test_update_ingredient(self):
+        ingredient = Ingredient.objects.create(user=self.user, name='Salt')
+
+        payload = {'name': 'Pepper'}
+        url = detail_url(ingredient.id)
+        res = self.client.patch(url, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        ingredient.refresh_from_db()
+        self.assertEqual(ingredient.name, payload['name'])
+
+    def test_delete_tag(self):
+        tag = Ingredient.objects.create(user=self.user, name='Salt')
+
+        url = detail_url(tag.id)
+        res = self.client.delete(url)
+
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        tags = Ingredient.objects.filter(user=self.user)
+        self.assertFalse(tags.exists())

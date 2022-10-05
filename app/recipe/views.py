@@ -66,3 +66,7 @@ class IngredientViewSet(mixins.CreateModelMixin,
     def get_queryset(self):
         """Retrieve recipes for auth user."""
         return self.queryset.filter(user=self.request.user).order_by('-name')
+
+    def perform_create(self, serializer):
+        """Create a new recipe"""
+        serializer.save(user=self.request.user)
